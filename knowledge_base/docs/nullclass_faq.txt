@@ -1,0 +1,68 @@
+NullClass — Frequently Asked Questions & Knowledge Base
+=========================================================
+
+SECTION: About NullClass
+-------------------------
+Q: What is NullClass?
+A: NullClass is an EdTech platform that offers internship programs and project-based learning in the fields of Artificial Intelligence, Machine Learning, Web Development, and Data Science. Students gain hands-on experience by working on real-world projects.
+
+Q: Who can join NullClass?
+A: NullClass programs are open to students and freshers who want to build practical skills in technology. No prior experience is required for most beginner programs.
+
+Q: Where is NullClass based?
+A: NullClass is an online platform, so it is accessible from anywhere in India and internationally.
+
+SECTION: Courses & Programs
+----------------------------
+Q: What courses does NullClass offer?
+A: NullClass offers internship tracks in: Artificial Intelligence & Machine Learning (AI/ML), Natural Language Processing (NLP), Computer Vision, Web Development (Full Stack), Data Science & Analytics, and Python Programming.
+
+Q: How long are NullClass internship programs?
+A: Most NullClass internship programs run for 4 to 8 weeks, depending on the track you choose. Some advanced tracks can go up to 12 weeks.
+
+Q: Do I get a certificate after completing a NullClass program?
+A: Yes! Upon successfully completing a NullClass program and submitting your project deliverables, you receive an official completion certificate.
+
+Q: Are NullClass courses free?
+A: NullClass offers both free and paid tracks. Some foundational courses are free, while advanced internship programs with mentorship and certificates may have a nominal fee.
+
+SECTION: AI/ML Track
+---------------------
+Q: What will I learn in the AI/ML track?
+A: In the AI/ML track, you will learn Python for data science, machine learning algorithms (classification, regression, clustering), deep learning with Keras and TensorFlow, NLP fundamentals, and how to build end-to-end AI projects.
+
+Q: What tools are used in the NullClass AI/ML program?
+A: The AI/ML program uses Python, Jupyter Notebooks, TensorFlow, Keras, scikit-learn, NLTK, pandas, numpy, and matplotlib.
+
+Q: What kind of projects will I build in the AI/ML track?
+A: Projects include building a chatbot using NLP and deep learning, image classification with CNNs, sentiment analysis on text data, and predictive modeling with real datasets.
+
+SECTION: Support & Contact
+---------------------------
+Q: How do I contact NullClass support?
+A: You can contact NullClass support at support@nullclass.com or through the support chat on the NullClass website.
+
+Q: What are NullClass support hours?
+A: NullClass support is available Monday through Friday, 9 AM to 6 PM IST. Email responses are typically sent within 24 hours.
+
+Q: I have a technical issue with my project. What should I do?
+A: For technical issues, you can reach out to your assigned mentor, post in the NullClass community forum, or email support@nullclass.com with details about your problem.
+
+SECTION: Enrollment
+--------------------
+Q: How do I enroll in a NullClass program?
+A: Visit the NullClass website, select your desired internship track, and complete the online enrollment form. You will receive a confirmation email with onboarding instructions.
+
+Q: Can I enroll in multiple programs at the same time?
+A: It is recommended to focus on one program at a time to get the most out of the experience. However, you can enroll in more than one if you can manage the workload.
+
+Q: Is there a deadline to enroll?
+A: New batches start regularly. Check the NullClass website for the latest batch start dates and enrollment deadlines.
+
+SECTION: Technical Requirements
+---------------------------------
+Q: What are the system requirements for NullClass programs?
+A: You need a computer with at least 8 GB RAM, a modern web browser, Python 3.8 or later installed, and a stable internet connection. A GPU is helpful for deep learning but not required.
+
+Q: Do I need to install any software?
+A: Yes, you will need Python, Anaconda or a virtual environment manager, and specific libraries like TensorFlow and scikit-learn. Installation guides are provided during onboarding.

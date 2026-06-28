@@ -1,0 +1,14 @@
+[
+  {
+    "type": "file",
+    "path": "knowledge_base/docs/nullclass_faq.txt",
+    "description": "NullClass official FAQ and program information",
+    "enabled": true
+  },
+  {
+    "type": "file",
+    "path": "knowledge_base/docs/assistant_pipeline.txt",
+    "description": "Multi-modal assistant pipeline and feature documentation",
+    "enabled": true
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "query": "What courses does NullClass offer?",
+    "expected_source": "NullClass official FAQ"
+  },
+  {
+    "query": "Tell me about the learning tracks available at NullClass",
+    "expected_source": "NullClass official FAQ"
+  },
+  {
+    "query": "How long are NullClass internship programs?",
+    "expected_source": "NullClass official FAQ"
+  },
+  {
+    "query": "What is the duration of a typical NullClass internship?",
+    "expected_source": "NullClass official FAQ"
+  },
+  {
+    "query": "How do I contact NullClass support?",
+    "expected_source": "NullClass official FAQ"
+  },
+  {
+    "query": "When can I reach customer support at NullClass?",
+    "expected_source": "NullClass official FAQ"
+  },
+  {
+    "query": "What are the four pipeline stages?",
+    "expected_source": "Multi-modal assistant pipeline"
+  },
+  {
+    "query": "Explain the agent reasoning stages in this assistant",
+    "expected_source": "Multi-modal assistant pipeline"
+  },
+  {
+    "query": "How is the knowledge base updated automatically?",
+    "expected_source": "Multi-modal assistant pipeline"
+  },
+  {
+    "query": "Does the system refresh its document index on a schedule?",
+    "expected_source": "Multi-modal assistant pipeline"
+  },
+  {
+    "query": "What embedding model is used for retrieval?",
+    "expected_source": "Multi-modal assistant pipeline"
+  },
+  {
+    "query": "Do I get a certificate after completing a NullClass program?",
+    "expected_source": "NullClass official FAQ"
+  },
+  {
+    "query": "How does ambiguity handling work in the assistant?",
+    "expected_source": "Multi-modal assistant pipeline"
+  }
+]

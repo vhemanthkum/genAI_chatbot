@@ -1,0 +1,40 @@
+Multi-Modal Agentic Assistant — System Documentation
+=====================================================
+
+SECTION: Overview
+-----------------
+Q: What is the Multi-Modal Agentic Assistant?
+A: It is a Streamlit chat application built on the NullClass Gen AI training project. It extends the original Keras/NLTK chatbot with a Google Gemini-powered 4-stage reasoning pipeline that handles text and image inputs, dynamic knowledge retrieval, and evidence-based response validation.
+
+Q: How does this project relate to the training chatbot?
+A: The training project used a hybrid Keras intent classifier plus ChromaDB vector search for FAQs. This internship extension keeps the same vector knowledge base architecture and adds multimodal reasoning, ambiguity handling, and automated periodic KB updates.
+
+SECTION: Pipeline Stages
+------------------------
+Q: What are the four pipeline stages?
+A: Stage 0 retrieves relevant knowledge base chunks via semantic vector search. Stage 1 extracts literal visual facts from uploaded images (OCR, objects, layout). Stage 2 detects ambiguous prompts and asks clarifying questions. Stage 3 drafts an evidence-based answer using chat history, visual evidence, and KB context. Stage 4 validates the draft against all evidence and rewrites hallucinations.
+
+Q: How does ambiguity handling work?
+A: If a user asks a vague question like "What is this?" when an image contains many objects, Stage 2 halts the pipeline and returns a targeted clarifying question instead of guessing.
+
+Q: How does response validation work?
+A: Stage 4 compares the draft answer against visual evidence and knowledge base context. If the draft adds unsupported facts, the validator rewrites the response to stay truthful.
+
+SECTION: Dynamic Knowledge Base
+-------------------------------
+Q: How is the knowledge base updated automatically?
+A: The kb_updater module reads knowledge_base/sources.json, fetches enabled local files or URLs, chunks the text, and upserts embeddings into ChromaDB. A background scheduler runs this process every 30 minutes by default.
+
+Q: Can I trigger a manual knowledge base refresh?
+A: Yes. Use the "Refresh Knowledge Base" button in the Streamlit sidebar, or run `python kb_updater.py` for a one-shot full re-index.
+
+Q: What embedding model is used for retrieval?
+A: The system uses sentence-transformers all-MiniLM-L6-v2 with ChromaDB cosine similarity. Retrieved chunks with distance below 0.55 are treated as relevant context.
+
+SECTION: Usage Tips
+-------------------
+Q: What kind of images work best?
+A: Charts, diagrams, screenshots with text, product photos, and busy scenes work well. The visual extraction stage performs OCR and object identification to ground answers.
+
+Q: What API key is required?
+A: You need a GEMINI_API_KEY from Google AI Studio for the reasoning pipeline. Vector search runs locally and does not require an additional API key.
