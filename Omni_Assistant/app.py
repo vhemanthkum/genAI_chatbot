@@ -6,7 +6,7 @@ from language_router import detect_language
 from sentiment_analyzer import SentimentAnalyzer
 from omni_engine import OmniEngine
 from arxiv_fetcher import ArxivFetcher
-from medical_store import VectorStore as MedicalStore
+from medical_store import MedicalKnowledgeBase as MedicalStore
 
 # ── Page Config ──────────────────────────────────────────────────────────────
 st.set_page_config(
@@ -48,7 +48,7 @@ def load_resources():
         "analyzer": SentimentAnalyzer(),
         "engine": OmniEngine(),
         "arxiv": ArxivFetcher(),
-        "medical": MedicalStore(db_path="../Medical_QA_Chatbot/chroma_db", collection_name="medical_kb")
+        "medical": MedicalStore(persist_directory="../Medical_QA_Chatbot/chroma_db", collection_name="medquad_qa")
     }
 
 try:
@@ -137,9 +137,9 @@ with col_main:
         context = None
         with st.spinner(f"Routing to {intent.upper()} subsystem..."):
             if intent == "medical":
-                results = res['medical'].search(prompt, n_results=2)
-                if results['documents'] and results['documents'][0]:
-                    context = "\\n\\n".join(results['documents'][0])
+                results = res['medical'].retrieve_answer(prompt, n_results=2)
+                if results:
+                    context = "\\n\\n".join([f"Q: {r['question']}\\nA: {r['answer']}" for r in results])
             elif intent == "arxiv":
                 df = res['arxiv'].fetch_papers(search_query=prompt, max_results=3)
                 if not df.empty:
