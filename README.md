@@ -35,17 +35,10 @@ This project requires API keys to function.
 2. Paste your Google Gemini and OpenRouter API keys into the `.env` file.
 
 ```bash
-# Example .env file
-GEMINI_API_KEY=your_google_gemini_key_here
-OPENROUTER_API_KEY=your_openrouter_key_here
-```
 
-### 4. Run the Application
-Launch the Streamlit interface using the following command:
-```bash
-streamlit run app.py
 ```
 The application will open in your default web browser at `http://localhost:8505`.
 
 ---
 *Developed by Hemanth Kumar for the NullClass Internship Capstone.*
+orelso if u need i can deploy using streanlit, i can provide u direct access link.
