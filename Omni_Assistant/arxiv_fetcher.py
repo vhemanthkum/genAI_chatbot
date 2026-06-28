@@ -96,3 +96,35 @@ def load_dataset(path: str = "arxiv_cs_papers.json") -> list:
 if __name__ == "__main__":
     papers = build_dataset()
     print(f"Total papers fetched: {len(papers)}")
+
+import pandas as pd
+import urllib.parse
+
+class ArxivFetcher:
+    def fetch_papers(self, search_query: str, max_results: int = 3) -> pd.DataFrame:
+        """
+        Fetches papers matching a general search query and returns a pandas DataFrame.
+        """
+        query_encoded = urllib.parse.quote(search_query)
+        params = {
+            "search_query": f"all:{query_encoded}",
+            "start": 0,
+            "max_results": max_results,
+            "sortBy": "relevance",
+            "sortOrder": "descending"
+        }
+        try:
+            resp = requests.get(ARXIV_API_URL, params=params, timeout=10)
+            resp.raise_for_status()
+            root = ET.fromstring(resp.text)
+            
+            papers = []
+            for entry in root.findall("atom:entry", NS):
+                title = entry.find("atom:title", NS).text.strip().replace("\n", " ")
+                summary = entry.find("atom:summary", NS).text.strip().replace("\n", " ")
+                papers.append({"Title": title, "Summary": summary})
+                
+            return pd.DataFrame(papers)
+        except Exception as e:
+            print(f"Failed to fetch from arXiv: {e}")
+            return pd.DataFrame()
