@@ -9,8 +9,7 @@ Demonstrates:
   4. Response Validation against Extracted Evidence
 """
 
-import os
-from typing import Dict, Any, Optional
+from typing import Any, Dict, Optional
 from google import genai
 from PIL import Image
 
@@ -81,7 +80,7 @@ If it is clear and answerable, output "CLEAR".
                     "status": "clarification_needed"
                 }
         except Exception as e:
-             logs.append(f"   [Ambiguity Check Error]: {e}")
+            logs.append(f"   [Ambiguity Check Error]: {e}")
 
         # ── Stage 3: Draft Reasoning Engine ──
         logs.append("✍️ Stage 3: Drafting response based on evidence...")

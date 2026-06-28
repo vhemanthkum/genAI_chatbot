@@ -36,6 +36,8 @@ except Exception as e:
 # ── Session State ──
 if "messages" not in st.session_state:
     st.session_state.messages = []
+if "pipeline_logs" not in st.session_state:
+    st.session_state.pipeline_logs = "Send a message to see pipeline reasoning."
 
 # ── Sidebar: Pipeline Logs ──
 with st.sidebar:
@@ -45,7 +47,10 @@ with st.sidebar:
     
     if st.button("Clear Chat History"):
         st.session_state.messages = []
+        st.session_state.pipeline_logs = "Send a message to see pipeline reasoning."
         st.rerun()
+
+    log_container.info(st.session_state.pipeline_logs)
 
 # ── Main Chat UI ──
 # Display chat history
@@ -96,6 +101,5 @@ if prompt:
             # Save assistant message
             st.session_state.messages.append({"role": "assistant", "content": final_response})
             
-            # Update sidebar logs
-            log_text = "\n\n".join(result["logs"])
-            log_container.info(log_text)
+            st.session_state.pipeline_logs = "\n\n".join(result["logs"])
+            log_container.info(st.session_state.pipeline_logs)

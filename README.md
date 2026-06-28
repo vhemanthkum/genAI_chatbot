@@ -1,44 +1,93 @@
-# 🧠 Multi-Modal Agentic Assistant
+# Multi-Modal Agentic Assistant
 
-## Overview
-This project implements a multi-modal AI assistant capable of reasoning over both text and image inputs. Unlike simple single-pass API wrappers, this system utilizes a **4-Stage Agentic Reasoning Pipeline** to demonstrate contextual reasoning, ambiguity handling, response validation, and intelligent decision-making.
+Streamlit chat app powered by **Google Gemini** that runs a **4-stage agentic pipeline** over text and image inputs — grounding, ambiguity detection, drafting, and fact-checking.
 
-## ⚙️ The 4-Stage Reasoning Pipeline
-1. **Visual Extraction (Grounding):**
-   When an image is provided, a sub-agent analyzes it to extract literal facts (OCR, objects, structural descriptions). This acts as the "ground truth" evidence.
-2. **Ambiguity Detection:**
-   An agent reviews the user's prompt alongside the chat history and visual evidence. If the prompt is too vague to answer confidently, the agent intercepts the flow and asks a clarifying question.
-3. **Draft Reasoning Engine:**
-   The reasoning engine synthesizes the conversation context, the extracted visual evidence, and the user prompt to draft a comprehensive response.
-4. **Validation (Fact-Checking):**
-   A strict validator agent reviews the drafted response against the extracted ground truth. If it detects hallucinations (details not present in the image), it forces a rewrite. Otherwise, it approves the response for the user.
+> **Note:** This repo replaces an older local TensorFlow/NLTK/Tkinter chatbot concept. The current implementation is API-based multimodal reasoning, not on-device Keras training.
 
-## 🚀 Setup & Execution
+## Tech stack
 
-### 1. Requirements
-Ensure you have Python 3.8+ installed. Install the required packages:
-```bash
-pip install -r requirements.txt
+| Layer | Tools |
+| --- | --- |
+| UI | [Streamlit](https://streamlit.io/) |
+| Model | [Google Gemini](https://ai.google.dev/) (`gemini-2.5-flash`) via `google-genai` |
+| Images | Pillow |
+| Config | `python-dotenv` |
+
+## Project structure
+
+```
+genAI_chatbot/
+├── app.py              # Streamlit chat UI and session state
+├── pipeline.py         # MultimodalPipeline — 4-stage reasoning
+├── requirements.txt
+├── .env.example        # Copy to .env and add your API key
+└── README.md
 ```
 
-### 2. API Key Configuration
-This system uses the **Google Gemini API** for high-quality multimodal reasoning.
-1. Get a free API key from [Google AI Studio](https://aistudio.google.com/).
-2. Rename `.env.example` to `.env`.
-3. Paste your API key into the `.env` file:
-   ```env
-   GEMINI_API_KEY=your_actual_key_here
-   ```
+## The 4-stage reasoning pipeline
 
-### 3. Run the App
-Launch the Streamlit web interface:
+```mermaid
+flowchart TD
+    A[User prompt + optional image] --> B[Stage 1: Visual extraction]
+    B --> C[Stage 2: Ambiguity detection]
+    C -->|Ambiguous| D[Ask clarifying question]
+    C -->|Clear| E[Stage 3: Draft response]
+    E --> F[Stage 4: Validate against evidence]
+    F -->|Pass| G[Return draft]
+    F -->|Fail| H[Return corrected answer]
+```
+
+1. **Visual extraction (grounding)** — If an image is attached, Gemini extracts literal facts (OCR, objects, layout). This becomes ground-truth evidence.
+2. **Ambiguity detection** — Checks whether the prompt is answerable from chat history and visual evidence. Vague prompts (e.g. “What is this?”) stop the pipeline and trigger a clarifying question.
+3. **Draft reasoning** — Synthesizes context, evidence, and the user prompt into a draft answer constrained to known facts.
+4. **Validation (fact-checking)** — A validator compares the draft to extracted evidence. Hallucinations are rewritten; supported drafts pass through.
+
+Internal stage logs appear in the Streamlit sidebar under **Agent Pipeline Thoughts**.
+
+## Setup
+
+**Requirements:** Python 3.10+ recommended, Gemini API key from [Google AI Studio](https://aistudio.google.com/).
+
+```bash
+git clone https://github.com/vhemanthkum/genAI_chatbot.git
+cd genAI_chatbot
+python -m venv venv
+
+# Windows
+venv\Scripts\activate
+# macOS / Linux
+# source venv/bin/activate
+
+pip install -r requirements.txt
+copy .env.example .env   # Windows
+# cp .env.example .env   # macOS / Linux
+```
+
+Edit `.env`:
+
+```env
+GEMINI_API_KEY=your_actual_key_here
+```
+
+Run the app:
+
 ```bash
 streamlit run app.py
 ```
 
-## 🧪 Testing the Architecture
-To see the reasoning engine in action:
-1. Open the sidebar in the Streamlit app to view the **Agent Pipeline Thoughts**.
-2. Upload an image of a chart or complex scene.
-3. Send a highly ambiguous prompt (e.g., just type "What is this?"). You will see the pipeline halt at Stage 2 and ask for clarification.
-4. Send a specific question. You will see the pipeline extract facts (Stage 1), draft a response (Stage 3), and validate it against hallucinations (Stage 4).
+## Try it
+
+1. Open the sidebar to watch pipeline logs.
+2. Upload a chart or busy scene (optional).
+3. Send an ambiguous prompt like “What is this?” — Stage 2 should ask for clarification.
+4. Ask something specific — Stages 1, 3, and 4 run end to end.
+
+## Environment variables
+
+| Variable | Required | Description |
+| --- | --- | --- |
+| `GEMINI_API_KEY` | Yes | Google AI Studio API key for Gemini |
+
+## License
+
+MIT — use and modify freely.
