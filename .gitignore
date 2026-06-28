@@ -3,3 +3,5 @@ __pycache__/
 .env
 chroma_db/
 *.pyc
+
+Omni_Assistant/.env

@@ -122,6 +122,7 @@ CRITICAL INSTRUCTIONS:
                         {"role": "user", "content": user_content}
                     ],
                     temperature=0.6,
+                    max_tokens=1000,
                 )
                 reply = response.choices[0].message.content
             except Exception as e:
