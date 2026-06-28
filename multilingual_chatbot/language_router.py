@@ -16,7 +16,8 @@ LANG_MAP = {
     'ar': 'Arabic',
     'nl': 'Dutch',
     'ko': 'Korean',
-    'tr': 'Turkish'
+    'tr': 'Turkish',
+    'te': 'Telugu'
 }
 
 def detect_language(text: str) -> dict:
